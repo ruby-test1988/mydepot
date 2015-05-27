@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mydepot</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<nav class="navbar navbar-fluid navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li><%= link_to('MyDepot', root_path) %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to('Products', products_path) %></li>
+        <li><%= link_to('Carts', carts_path) %></li>
+      <% end %>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <li><%= link_to('ログアウト', destroy_user_session_path, method: :delete) %></li>
+      <% else %>
+        <li><%= link_to('ログイン', new_user_session_path) %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-8">
+      <%= yield %>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <%= render('layouts/cart', cart: @cart) if @cart %>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

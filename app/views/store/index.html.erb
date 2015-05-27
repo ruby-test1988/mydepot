@@ -1,0 +1,21 @@
+<h1>商品カタログ</h1>
+
+<% @products.each do |product| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <%= product.name %>
+    </div>
+    <div class="panel-body">
+      <div class="media">
+        <div class="media-left media-middle">
+          <%= image_tag(product.image_url) %>
+        </div>
+        <div class="media-body">
+          <p><%= sanitize product.description %></p>
+          <h4 class="media-heading"><%= number_to_currency(product.price) %></h4>
+          <%= button_to('カートに追加する', add_item_path(product_id: product)) %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

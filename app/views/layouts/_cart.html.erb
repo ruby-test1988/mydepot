@@ -1,0 +1,7 @@
+<h2>カート</h2>
+<% cart.line_items.each do |item| %>
+  <p><%= item.quantity %>x <%= item.product.name %></p>
+<% end %>
+
+<%= button_to('カートを空にする', destroy_cart_path, method: :delete, data: {confirm: 'カートを空にしてもいいですか？'}) %>
+
